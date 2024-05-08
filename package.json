@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "axios": "^1.6.8",
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.1.0"
+  },
+  "name": "jail",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:server:dev": "nodemon server/server.js",
+    "start:client:dev": "npm run dev --prefix client",
+    "start": "concurrently \"npm run start:server:dev\" \"npm run start:client:dev \" "
+  }
+}
