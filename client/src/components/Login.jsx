@@ -20,7 +20,7 @@ function Login() {
                     <input type="text" class="custom-input" />
                 </div>
 
-                <button type="submit">Log In</button>
+                <button type="submit" class="loger">Log In</button>
             </form>
             
         </main>

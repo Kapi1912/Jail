@@ -1,0 +1,26 @@
+h1 {
+    text-align: center;
+}
+
+.bloki {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.blok-a , .blok-b {
+    border: 2px solid #B0578D;
+    border-radius: 10px;
+    margin: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    
+    word-spacing: 5px;
+    width: 40%;
+}
+
+.login {
+        position: absolute;
+        left: 16px;
+        top: 16px;
+}
