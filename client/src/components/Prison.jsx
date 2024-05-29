@@ -1,12 +1,15 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import './Prison.css'
-import Login from "./Login"
+import {Login, isLogged} from "./Login"
+import { useNavigate } from "react-router-dom";
 
 
 function Prison() {
 
     const [prisonersList, setPrisonersList] = useState([])
+    const navigate = useNavigate();
+
     async function fetchData(){
         try{
           const response = await axios.get("http://localhost:5000/prisoners")
@@ -22,9 +25,7 @@ function Prison() {
         fetchData() 
       }, [])
 
-      const handleLoginClick = () => {
-        history.push('/login');
-    };
+
 
     return(
     <>
@@ -36,10 +37,12 @@ function Prison() {
             <ul style={{listStyle:'none'}}>
                 {
                     prisonersList.map(prisoner=>{
-                    return (
-                    <li key={prisoner._id}>{prisoner.name} {prisoner.surname} 
+                      if(!prisoner.is60){
+                        return (
+                          <li key={prisoner._id}>{prisoner.name} {prisoner.surname} 
 
-                                        </li>)
+                                              </li>)
+                      }
                     })
                 }
                 </ul>
@@ -49,16 +52,21 @@ function Prison() {
             <ul style={{listStyle:'none'}}>
                 {
                     prisonersList.map(prisoner=>{
-                    return (
-                    <li key={prisoner._id}>{prisoner.name} {prisoner.surname} 
 
-                                        </li>)
+
+                      if(prisoner.is60){
+                        return (
+                          <li key={prisoner._id}>{prisoner.name} {prisoner.surname} 
+      
+                                              </li>)
+                      }
+
                     })
                 }
                 </ul>
          </fieldset>
-        
-            <button type="submit" class="login"  onClick={handleLoginClick}>Login</button>
+
+            <button class="login" onClick={() => navigate('/login')}>Login</button>
          </div>
             
     

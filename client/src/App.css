@@ -18,34 +18,62 @@
     
 }
 
+
+
+.title-container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+    
+    transition: margin-top 0.5s ease; 
+}
+
+.title-container h1 {
+    position: relative;
+    z-index: 1;
+    font-size: 45px;
+    color: white;
+    margin-top: 100px; 
+    text-shadow: 2px 2px 4px black
+    
+}
+
 .form-container {
-    margin-top: 15%;
-    margin-left: 25%;
+    margin-top: 5%;
+    margin-left: 30%;
     margin-right: 25%;
+    margin-bottom: 30%;
     padding-top: 5%;
     display: flex;
     justify-content: space-around;
     text-align: center;
     background-color: #FACBEA;
     box-shadow: 1px 8px 10px;
-    
+    border: 2px solid #D988B9;
+    border-radius: 15px;
+    text-shadow: 1px 1px 2px black;
+    width: 500px;
     height: 200px;
-    
-
+    transition: box-shadow 0.6s; 
 }
 
 .form-container:hover {
-    
     box-shadow: 1px 1px 10px 10px;
-    transition: 0.3s;
     
+    transition: box-shadow 0.6s; 
 }
 
+.form-container:hover .title-container {
+    
+    margin-top: 40%; 
+}
 
 .user, .password, .custom-input {
     margin-bottom: 20px;
-    
+    text-shadow: 1px 1px 2px black;
     font-size: 20px;
+    
+    border-radius: 7px;
     
 }
 
@@ -58,9 +86,35 @@
     color: white;
     font-family: "Poetsen One", sans-serif;
     font-size: 15px;
+    text-shadow: 1px 1px 2px black
 }
 
 
+.prisonerinfo {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+    
+}
+
+.prisonerinfo-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 2px solid rgb(88, 35, 88);
+    border-radius: 10px;
+    
+    width:300px;
+    text-shadow: 1px 1px 2px black;
 
 
+}
 
+.prisonerinfo-item > form > div {
+    margin-bottom: 5px;
+}
+
+.adding {
+    border-radius: 5px;
+
+}

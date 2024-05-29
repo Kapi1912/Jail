@@ -2,9 +2,17 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const cors = require("cors")
+const multer = require('multer');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+const upload = multer({ dest: 'uploads/' })
+
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(bodyParser.json())
 
 app.use(express.json())
 app.use(cors())
@@ -41,7 +49,38 @@ app.get('/prisoners', async(req, res) =>
 
 });
 
+app.post('/prisoners', upload.none(), async(req, res) =>
+    {
 
+        try {
+            const newPrisoner = new slaves(req.body)
+            await newPrisoner.save()
+            res.status(201).json(newPrisoner)
+
+            
+        } catch(err){
+            console.log(`post error ${err.message}`)
+            res.status(400).json(err)
+        }
+    
+});
+
+app.delete('/prisoners/:name/:surname', async(req, res) =>
+{
+    try {
+        const deletedPrisoner = await slaves.findOneAndDelete({name: req.params.name, surname: req.params.surname})
+        if(!deletedPrisoner){
+            return res.status(404).json({message:"Prisoner not found"})
+        }
+        res.json({message:"Prisoner deleted!"})
+
+
+    } catch(err) {
+        res.status(500).json({message: err.message})
+    }
+
+});
+ 
 
 
 
@@ -49,4 +88,5 @@ app.get('/prisoners', async(req, res) =>
 
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
+    
   });
