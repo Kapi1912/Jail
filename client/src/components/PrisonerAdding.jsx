@@ -34,7 +34,7 @@ function PrisonerAdding() {
         }
 
         try {
-        const response = await axios.post("http://localhost:5000/prisoners", formData)
+            const response = await axios.post("http://localhost:5000/prisoners", formData)
             if(!response.ok){
                 throw new Error(`Network response was not ok ${response.status}`)
             }
