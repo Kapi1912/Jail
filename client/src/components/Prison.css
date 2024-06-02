@@ -26,3 +26,26 @@ h1 {
         left: 16px;
         top: 16px;
 }
+
+
+.dynamic-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000;
+    border-radius: 8px;
+    padding: 10px;
+    height: 250px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+.dynamic-popup button:hover {
+    cursor: pointer;
+}

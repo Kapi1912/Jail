@@ -10,6 +10,15 @@ function Prison() {
     const [prisonersList, setPrisonersList] = useState([])
     const navigate = useNavigate();
 
+    const [isOpen, setIsOpen] = useState(false);
+    const [detailsPrisoner, setDetailsPrisoner] = useState({})
+
+    const [bgImg, setBgImg] = useState("");
+
+    const openPopup = () => setIsOpen(true);
+    const closePopup = () => setIsOpen(false);
+
+
     async function fetchData(){
         try{
           const response = await axios.get("http://localhost:5000/prisoners")
@@ -39,7 +48,7 @@ function Prison() {
                     prisonersList.map(prisoner=>{
                       if(!prisoner.is60){
                         return (
-                          <li key={prisoner._id}>{prisoner.name} {prisoner.surname} 
+                          <li style={{cursor: "pointer"}} key={prisoner._id} onClick={() => {setDetailsPrisoner(prisoner); openPopup(); setBgImg("url('sigma.png')")} }>{prisoner.name} {prisoner.surname} 
 
                                               </li>)
                       }
@@ -56,7 +65,7 @@ function Prison() {
 
                       if(prisoner.is60){
                         return (
-                          <li key={prisoner._id}>{prisoner.name} {prisoner.surname} 
+                          <li style={{cursor: "pointer"}} key={prisoner._id} onClick={() => {setDetailsPrisoner(prisoner); openPopup(); setBgImg("")}}>{prisoner.name} {prisoner.surname} 
       
                                               </li>)
                       }
@@ -69,6 +78,14 @@ function Prison() {
             <button class="login" onClick={() => navigate('/login')}>Login</button>
          </div>
             
+         {isOpen && (
+        <div className="dynamic-popup" style={{backgroundImage: bgImg}}>
+        <li key={detailsPrisoner._id}>
+          {detailsPrisoner.name} {detailsPrisoner.surname} {detailsPrisoner.sentence} {detailsPrisoner.reason}
+        </li>
+          <button onClick={closePopup}>Close</button>
+        </div>
+      )}
     
     </>
     )
